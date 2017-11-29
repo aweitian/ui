@@ -10,6 +10,6 @@ namespace Tian\Ui\FormWrap;
 
 use Tian\Ui\Form;
 
-abstract class FormWrap {
+abstract class Wrap {
 	abstract public function wrap(Form $form);
 }

@@ -35,6 +35,7 @@
  */
 namespace Tian\Ui;
 use Tian\Data\Tuple;
+use Tian\Ui\Base\Node;
 use Tian\Ui\Base\Form as BaseForm;
 class Form {
 	/**
@@ -191,10 +192,10 @@ class Form {
     /**
      *
      * @param $formName
-     * @param Base\Node $node
+     * @param Node $node
      * @return $this
      */
-	public function appendNode($formName, Base\Node $node) {
+	public function appendNode($formName, Node $node) {
 		$this->children [$formName] = $this->form->getChildCnt ();
 		$this->form->appendNode ( $node );
 		return $this;
@@ -211,9 +212,9 @@ class Form {
      *
      * @param $formName
      * @param int $pos
-     * @param Base\Node $node
+     * @param Node $node
      */
-	public function insertNode($formName, $pos, Base\Node $node) {
+	public function insertNode($formName, $pos, Node $node) {
 		$this->children [$formName] = $this->form->getChildCnt ();
 		$this->form->insertNode ( $pos, $node );
 	}
@@ -221,9 +222,9 @@ class Form {
     /**
      *
      * @param $formName
-     * @param Base\Node $node
+     * @param Node $node
      */
-	public function prependNode($formName, Base\Node $node) {
+	public function prependNode($formName, Node $node) {
 		$this->children [$formName] = $this->form->getChildCnt ();
 		$this->form->prependNode ( $node );
 	}
@@ -231,7 +232,7 @@ class Form {
     /**
      *
      * @param $formName
-     * @return NULL|Base\Node
+     * @return NULL|Node
      */
 	public function getNode($formName) {
 		if (! array_key_exists ( $formName, $this->children ))
@@ -250,12 +251,12 @@ class Form {
 		$this->form->removeNode ( $this->children [$formName] );
 		return $this;
 	}
-	/**
-	 *
-	 * @return $this
-	 */
-	public function initFormElement() {
-		$ui = new \tian\mysql\fieldUI ();
+
+    /**
+     * @param Tian\Mysql\FieldUI $ui
+     * @return $this
+     */
+	public function initFormElement($ui) {
 		if (is_array ( $this->uiType )) {
 			$ui->setUiTypeMap ( $this->uiType );
 		}
@@ -299,10 +300,10 @@ class Form {
 	}
 	/**
 	 *
-	 * @param \Tian\Ui\FormWrap\formWrap $wrap
+	 * @param FormWrap $wrap
 	 * @return $this
 	 */
-	public function wrapForm(\Tian\Ui\FormWrap\formWrap $wrap) {
+	public function wrapForm(FormWrap $wrap) {
 		$wrap->wrap ( $this );
 		return $this;
 	}

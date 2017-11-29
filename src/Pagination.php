@@ -6,34 +6,37 @@
  * @Desc: 
  * 依赖:
  */
-namespace tian\ui;
+namespace Tian\Ui;
 
-class pagination {
+use Tian\Ui\Base\Element;
+use Tian\Ui\paginationWrap\paginationWrap;
+
+class Pagination {
 	public $pagination;
 	/**
 	 *
-	 * @var \Tian\Ui\Base\Node
+	 * @var Element
 	 */
 	public $select;
 	/**
 	 *
-	 * @var \Tian\Ui\Base\Node
+	 * @var Element
 	 */
 	public $btnGrp;
 	/**
 	 *
-	 * @var \Tian\Ui\Base\Node
+	 * @var Element
 	 */
 	public $btnPriv;
 	/**
 	 *
-	 * @var \Tian\Ui\Base\Node
+	 * @var Element
 	 */
 	public $btnNext;
 	public $selectEnabled = true;
-	public function __construct(\tian\pagination $pagination) {
+	public function __construct(\Tian\Data\Pagination $pagination) {
 		$this->pagination = $pagination;
-		$this->btnGrp = new \Tian\Ui\Base\Node ( "" );
+		$this->btnGrp = new Element ( "" );
 		$this->btnPriv = null;
 		$this->btnNext = null;
 		$this->select = null;
@@ -42,7 +45,7 @@ class pagination {
 		$this->selectEnabled = $f;
 		return $this;
 	}
-	public function wrap(\Tian\Ui\paginationWrap\paginationWrap $wrap) {
+	public function wrap(PaginationWrap $wrap) {
 		$wrap->wrap ( $this );
 		return $this;
 	}

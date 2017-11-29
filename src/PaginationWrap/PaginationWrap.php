@@ -8,6 +8,8 @@
  */
 namespace Tian\Ui\paginationWrap;
 
+use Tian\Ui\Pagination;
+
 abstract class paginationWrap {
-	abstract public function wrap(\Tian\Ui\pagination $pagination);
+	abstract public function wrap(Pagination $pagination);
 }

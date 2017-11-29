@@ -6,51 +6,54 @@
  * @Desc: 
  * 依赖:
  */
-namespace Tian\Ui\FormWrap;
+namespace Tian\Ui\Wrap;
+use Tian\Ui\Base\Element;
+use Tian\Ui\base\TextNode;
+use Tian\Ui\Form;
 
-class TbWrap extends FormWrap
+class TbWrap extends Wrap
 {
 	/**
 	 *
-	 * @var \Tian\Ui\Form
+	 * @var Element
 	 */
 	public $form;
 	/**
 	 *
-	 * @var \Tian\Ui\Base\Node
+	 * @var Element
 	 */
 	public $table;
 	/**
 	 *
-	 * @var \Tian\Ui\Base\Node
+	 * @var Element
 	 */
 	public $thead;
 	/**
 	 *
-	 * @var \Tian\Ui\Base\Node
+	 * @var Element
 	 */
 	public $tbody;
 	/**
 	 *
-	 * @var \Tian\Ui\Base\Node
+	 * @var Element
 	 */
 	public $tfoot;
 	/**
 	 *
-	 * @var \Tian\Ui\Base\Node
+	 * @var Element
 	 */
 	public $caption;
 	public $alias;
 	public function __construct() {
 	}
-	public function wrap(\Tian\Ui\Form $form) {
+	public function wrap(Form $form) {
 		$this->form = $form;
 		$this->alias = $form->alias ();
-		$this->table = new \Tian\Ui\Base\Node ( "table" );
-		$this->caption = new \Tian\Ui\Base\Node ( "caption" );
-		$this->thead = new \Tian\Ui\Base\Node ( "thead" );
-		$this->tbody = new \Tian\Ui\Base\Node ( "tbody" );
-		$this->tfoot = new \Tian\Ui\Base\Node ( "tfoot" );
+		$this->table = new Element ( "table" );
+		$this->caption = new Element ( "caption" );
+		$this->thead = new Element ( "thead" );
+		$this->tbody = new Element ( "tbody" );
+		$this->tfoot = new Element ( "tfoot" );
 		$this->table->appendNode ( $this->caption );
 		$this->table->appendNode ( $this->thead );
 		$this->table->appendNode ( $this->tbody );
@@ -58,18 +61,18 @@ class TbWrap extends FormWrap
 		foreach ( $this->alias as $field => $alias ) {
 			if (! $this->form->hasElem ( $field ))
 				continue;
-			$tr = new \Tian\Ui\Base\Node ( "tr" );
+			$tr = new Element ( "tr" );
 			if ($alias) {
-				$td1 = new \Tian\Ui\Base\Node ( "td" );
-				$td1->appendNode ( new \Tian\Ui\Base\textnode ( $alias ) );
-				$td2 = new \Tian\Ui\Base\Node ( "td" );
+				$td1 = new Element ( "td" );
+				$td1->appendNode ( new Textnode ( $alias ) );
+				$td2 = new Element ( "td" );
 				$node = $this->form->getNode ( $field );
 				$td2->appendNode ( $node );
 				$tr->appendNode ( $td1 );
 				$tr->appendNode ( $td2 );
 				$this->tbody->appendNode ( $tr );
 			} else {
-				$td2 = new \Tian\Ui\Base\Node ( "td", array (
+				$td2 = new Element ( "td", array (
 						"colspan" => 2 
 				) );
 				$node = $this->form->getNode ( $field );

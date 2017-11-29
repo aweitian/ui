@@ -10,7 +10,7 @@ namespace Tian\Ui\Base;
 
 
 
-class Form extends Node {
+class Form extends Element {
 	public $method = "get";
 	public $action = "";
 	public $isUpload = false;
