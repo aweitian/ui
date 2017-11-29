@@ -1,0 +1,30 @@
+{
+  "name": "aweitian/route",
+  "description": "ui element",
+  "type": "project",
+  "keywords": [
+    "ui"
+  ],
+  "homepage": "https://github.com/aweitian/ui",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "awei.tian@qq.com",
+      "email": "531164479@qq.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.4.0",
+    "aweitian/data":"dev-master"
+  },
+  "require-dev": {
+        "phpunit/phpunit": "~5.0"
+  },
+  "autoload": {
+    "files": [],
+    "psr-4": {
+      "Tian\\Ui\\": "src/"
+    }
+  }
+}
