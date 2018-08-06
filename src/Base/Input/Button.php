@@ -6,9 +6,9 @@
  * @Desc: 
  * 依赖:
  */
-namespace Tian\Ui\Base\Input;
+namespace Aw\Ui\Base\Input;
 
-use Tian\Ui\Base\FormInput;
+use Aw\Ui\Base\FormInput;
 
 class Button extends FormInput {
 

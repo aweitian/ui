@@ -6,9 +6,9 @@
  * @Desc: 
  * 依赖:
  */
-namespace Tian\Ui\Base\Input;
+namespace Aw\Ui\Base\Input;
 
-use Tian\Ui\Base\FormInput;
+use Aw\Ui\Base\FormInput;
 
 class Select extends FormInput {
 	public $domain = array ();
@@ -59,7 +59,7 @@ class Select extends FormInput {
 	
 	/**
 	 * 传递参数两个参数
-	 * item,类型为\Tian\Ui\Base\option
+	 * item,类型为\Aw\Ui\Base\option
 	 * index 孩子中顺序
 	 *
 	 * @param callback $callback        	

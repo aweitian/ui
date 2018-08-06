@@ -20,11 +20,11 @@
  *			char,		binary,		varbinary
  * 依赖:
  */
-namespace Tian\Data\Mysql;
+namespace Aw\Ui\Adapter\Mysql;
 
-use Tian\Data\Component;
-use Tian\Validator\DateValidator;
-use Tian\Validator\NumberValidator;
+use Aw\Data\Component;
+use Aw\Validator\DateValidator;
+use Aw\Validator\NumberValidator;
 
 class Field extends Component {
 

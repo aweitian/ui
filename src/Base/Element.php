@@ -6,9 +6,9 @@
  * @Desc: 
  * 依赖:
  */
-namespace Tian\Ui\Base;
+namespace Aw\Ui\Base;
 
-use Tian\Data\Filter;
+use Aw\Data\Filter;
 
 class Element extends TagNode implements \IteratorAggregate {
 	protected $childNodes = array ();
@@ -100,7 +100,7 @@ class Element extends TagNode implements \IteratorAggregate {
 	/**
 	 * (non-PHPdoc)
 	 *
-	 * @see \tian\ui\base\node::getNodeHtml()
+	 * @see \Aw\ui\base\node::getNodeHtml()
 	 */
 	public function getNodeHtml() {
 		if (! $this->tagName)
@@ -410,7 +410,7 @@ class Element extends TagNode implements \IteratorAggregate {
 	/**
 	 * 传递参数两个参数
 	 * index 孩子中顺序
-	 * item,类型为\tian\ui\base\node
+	 * item,类型为\Aw\ui\base\node
 	 *
 	 * @param callback $callback        	
 	 * @return $this

@@ -6,24 +6,24 @@
  * Time: 17:10
  */
 
-namespace Tian\Ui\Adapter\Mysql;
+namespace Aw\Ui\Adapter\Mysql;
 
 
-use Tian\Data\Component;
-use Tian\Ui\Base\FormInput;
-use Tian\Ui\Base\Input\Button;
-use Tian\Ui\Base\Input\CheckboxGrp;
-use Tian\Ui\Base\Input\Date;
-use Tian\Ui\Base\Input\Datetime;
-use Tian\Ui\Base\Input\file;
-use Tian\Ui\Base\Input\Image;
-use Tian\Ui\Base\Input\Password;
-use Tian\Ui\Base\Input\RadioGrp;
-use Tian\Ui\Base\Input\reset;
-use Tian\Ui\Base\Input\Select;
-use Tian\Ui\Base\Input\Submit;
-use Tian\Ui\Base\Input\Text;
-use Tian\Ui\Base\Input\Textarea;
+use Aw\Data\Component;
+use Aw\Ui\Base\FormInput;
+use Aw\Ui\Base\Input\Button;
+use Aw\Ui\Base\Input\CheckboxGrp;
+use Aw\Ui\Base\Input\Date;
+use Aw\Ui\Base\Input\Datetime;
+use Aw\Ui\Base\Input\file;
+use Aw\Ui\Base\Input\Image;
+use Aw\Ui\Base\Input\Password;
+use Aw\Ui\Base\Input\RadioGrp;
+use Aw\Ui\Base\Input\reset;
+use Aw\Ui\Base\Input\Select;
+use Aw\Ui\Base\Input\Submit;
+use Aw\Ui\Base\Input\Text;
+use Aw\Ui\Base\Input\Textarea;
 
 class FieldUI
 {
@@ -41,7 +41,7 @@ class FieldUI
     /**
      * 数据格式为:
      * 字段名 => element类型名
-     * element类型名(\tian\ui\base\input类型)
+     * element类型名(\Aw\ui\base\input类型)
      *
      * @var array
      */

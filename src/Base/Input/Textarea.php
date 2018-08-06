@@ -6,15 +6,15 @@
  * @Desc: 
  * 依赖:
  */
-namespace Tian\Ui\Base\Input;
+namespace Aw\Ui\Base\Input;
 
-use Tian\Ui\Base\FormInput;
-use Tian\Ui\base\TextNode;
+use Aw\Ui\Base\FormInput;
+use Aw\Ui\base\TextNode;
 
 class Textarea extends FormInput {
 	/**
 	 *
-	 * @var \Tian\Ui\Base\textnode;
+	 * @var \Aw\Ui\Base\textnode;
 	 */
 	public $textNode;
 	public function __construct($name = "", $value = "") {

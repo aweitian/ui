@@ -6,7 +6,7 @@
  * @Desc: 
  * 依赖:
  */
-namespace tian\ui;
+namespace Aw\ui;
 
 class table {
 	/**
@@ -36,7 +36,7 @@ class table {
 	
 	/**
 	 *
-	 * @var \Tian\Ui\Base\Node
+	 * @var \Aw\Ui\Base\Node
 	 */
 	public $table;
 	public $domain = array ();
@@ -47,7 +47,7 @@ class table {
 	}
 	/**
 	 *
-	 * @return \Tian\Ui\table
+	 * @return \Aw\Ui\table
 	 */
 	public function initDefAlias() {
 		if (isset ( $this->data [0] )) {
@@ -61,7 +61,7 @@ class table {
 	/**
 	 *
 	 * @param array $domain        	
-	 * @return \Tian\Ui\table
+	 * @return \Aw\Ui\table
 	 */
 	public function setDomain(array $domain) {
 		$this->domain = $domain;
@@ -77,7 +77,7 @@ class table {
 	 * 第五个是单元格式内容
 	 *
 	 * @param array $filter        	
-	 * @return \Tian\Ui\table
+	 * @return \Aw\Ui\table
 	 */
 	public function setDataFilter(array $filter) {
 		$this->dataFilter = $filter;
@@ -87,7 +87,7 @@ class table {
 	 *
 	 * @param string $name        	
 	 * @param string $alias        	
-	 * @return \Tian\Ui\table
+	 * @return \Aw\Ui\table
 	 */
 	public function setAlias($name, $alias) {
 		$this->alias [$name] = $alias;
@@ -96,7 +96,7 @@ class table {
 	/**
 	 *
 	 * @param array $alias        	
-	 * @return \Tian\Ui\table
+	 * @return \Aw\Ui\table
 	 */
 	public function mergeAlias(array $alias) {
 		$this->alias = array_merge ( $this->alias, $alias );
@@ -105,7 +105,7 @@ class table {
 	/**
 	 *
 	 * @param string $formName        	
-	 * @return \Tian\Ui\table
+	 * @return \Aw\Ui\table
 	 */
 	public function rmAlias($formName) {
 		if (isset ( $this->alias [$formName] )) {
@@ -116,7 +116,7 @@ class table {
 	/**
 	 *
 	 * @param array $data        	
-	 * @return \Tian\Ui\table
+	 * @return \Aw\Ui\table
 	 */
 	public function setData(array $data) {
 		$this->data = $data;
@@ -128,14 +128,5 @@ class table {
 	 */
 	public function alias() {
 		return $this->alias;
-	}
-	/**
-	 *
-	 * @param \Tian\Ui\tableWrap\tableWrap $wrap
-	 * @return \Tian\Ui\table
-	 */
-	public function wrapTable(\Tian\Ui\tableWrap\tableWrap $wrap) {
-		$wrap->wrap ( $this );
-		return $this;
 	}
 }

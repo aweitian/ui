@@ -6,7 +6,7 @@
  * @Desc: 
  * 依赖:
  */
-namespace Tian\Ui\Base;
+namespace Aw\Ui\Base;
 
 abstract class Node {
     public $wrapBegin = "";
@@ -63,7 +63,7 @@ abstract class Node {
      * @param string $html
      * @param string $placeHolder
      *        	默认值 ></ 找到第一个，然后分割成两个
-     * @return \tian\ui\base\node
+     * @return \Aw\ui\base\node
      */
     public function wrap($html, $placeHolder = "") {
         if ($placeHolder) {

@@ -6,10 +6,10 @@
  * Time: 12:45
  */
 
-namespace Tian\Ui\Base\Input;
+namespace Aw\Ui\Base\Input;
 
 
-use Tian\Ui\Base\Node;
+use Aw\Ui\Base\Node;
 
 class Radio extends Node {
     public $label = "";

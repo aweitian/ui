@@ -6,7 +6,7 @@
  * @Desc: 
  * 依赖:
  */
-namespace Tian\Ui\base;
+namespace Aw\Ui\base;
 
 class TextNode extends Node {
 	private $textContent;
