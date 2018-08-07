@@ -9,46 +9,55 @@
 namespace Aw\Ui\Base\Input;
 
 
-use Aw\Ui\Base\Node;
+use Aw\Ui\Base\LeafElement;
 
-class Radio extends Node {
+class Radio extends LeafElement
+{
     public $label = "";
+
     /**
      *
      * @param string $name
      * @param string $value
      */
-    public function __construct($name = "", $value = NULL) {
-        parent::__construct("input",array (
+    public function __construct($name = "", $value = NULL)
+    {
+        parent::__construct("input", array(
             "type" => "radio",
             "value" => $value
-        ),true);
+        ));
         if ($name) {
-            $this->setName ( $name );
+            $this->setName($name);
         }
     }
+
     /**
      *
      * @return $this
      */
-    public function setChecked() {
-        $this->setAttr ( "checked" );
+    public function setChecked()
+    {
+        $this->setAttr("checked");
         return $this;
     }
+
     /**
      *
      * @return $this
      */
-    public function rmChecked() {
-        $this->rmAttr ( "checked" );
+    public function rmChecked()
+    {
+        $this->rmAttr("checked");
         return $this;
     }
+
     /**
      *
      * @param string $label
      * @return $this
      */
-    public function setLabel($label) {
+    public function setLabel($label)
+    {
         $this->label = $label;
         return $this;
     }
@@ -56,23 +65,33 @@ class Radio extends Node {
     /**
      * @return $this
      */
-    public function setRequire() {
-        $this->setAttr ( "require" );
+    public function setRequire()
+    {
+        $this->setAttr("require");
         return $this;
     }
 
     /**
      * @return $this
      */
-    public function rmRequire() {
-        $this->rmAttr ( "require" );
+    public function rmRequire()
+    {
+        $this->rmAttr("require");
         return $this;
     }
 
     /**
+     * @param null $node
      * @return string
      */
-    public function html() {
-        return $this->wrapBegin . $this->getNodeHtml () . $this->label . $this->wrapEnd;
+    public function dumpHtml($node = null)
+    {
+        if ($node == null) {
+            $node = $this;
+        }
+
+        return strtr($this->wrap, array(
+            $this->wrapPlaceHolder => $node->getNodeHtml() . $this->label
+        ));
     }
 }

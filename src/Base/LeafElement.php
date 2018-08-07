@@ -1,5 +1,6 @@
 <?php
 /**
+ * 不含有子结点的元素
  * Created by PhpStorm.
  * User: Administrator
  * Date: 2017/11/29
@@ -17,8 +18,19 @@ class LeafElement extends TagNode
      * @param string $tag
      * @param array $attrs
      */
-    public function __construct($tag, $attrs = array()) {
+    public function __construct($tag, $attrs = array())
+    {
         $this->tagName = $tag;
         $this->attributes = $attrs;
+    }
+
+    /**
+     *
+     * @param Element $parent
+     * @return $this
+     */
+    public function setParent(Element $parent)
+    {
+        return $this;
     }
 }

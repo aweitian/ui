@@ -3,18 +3,21 @@
 /**
  * @Author: awei.tian
  * @Date: 2016年8月4日
- * @Desc: 
+ * @Desc:
  * 依赖:
  */
+
 namespace Aw\Ui\Base\Input;
 
-use Aw\Ui\Base\FormInput;
+use Aw\Ui\Base\LeafElement;
 
-class Submit extends FormInput {
-	public function __construct($value = "") {
-        parent::__construct("input",array (
+class Submit extends LeafElement
+{
+    public function __construct($value = "")
+    {
+        parent::__construct("input", array(
             "type" => "submit",
             "value" => $value
-        ),true);
-	}
+        ));
+    }
 }

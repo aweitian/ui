@@ -8,13 +8,13 @@
  */
 namespace Aw\Ui\Base\Input;
 
-use Aw\Ui\Base\FormInput;
+use Aw\Ui\Base\Element;
 use Aw\Ui\base\TextNode;
 
-class Textarea extends FormInput {
+class Textarea extends Element {
 	/**
 	 *
-	 * @var \Aw\Ui\Base\textnode;
+	 * @var \Aw\Ui\Base\TextNode;
 	 */
 	public $textNode;
 	public function __construct($name = "", $value = "") {

@@ -8,14 +8,13 @@
  */
 namespace Aw\Ui\Base\Input;
 
-use Aw\Ui\Base\FormInput;
+use Aw\Ui\Base\LeafElement;
 
-class Hidden extends FormInput {
+class Hidden extends LeafElement {
 	public function __construct($value) {
         parent::__construct("input",array (
             "type" => "hidden",
             "value" => $value
-        ),true);
-		$this->setFormVisable(false);
+        ));
 	}
 }

@@ -27,13 +27,4 @@ class TextNode extends Node {
 	public function getNodeHtml() {
 		return $this->textContent;
 	}
-    /**
-     *
-     * @param Node $parent
-     * @return $this
-     */
-    public function setParent(Node $parent) {
-        $this->parent = $parent;
-        return $this;
-    }
 }

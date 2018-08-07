@@ -8,9 +8,10 @@
  */
 namespace Aw\Ui\Base\Input;
 
-use Aw\Ui\Base\FormInput;
 
-class Button extends FormInput {
+use Aw\Ui\Base\LeafElement;
+
+class Button extends LeafElement {
 
 	public function __construct($value) {
 	    parent::__construct("input",array (

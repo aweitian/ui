@@ -9,10 +9,11 @@
 namespace Aw\Ui\Base\Input;
 
 
-use Aw\Ui\Base\Node;
+use Aw\Ui\Base\Element;
 use Aw\Ui\Base\TextNode;
 
-class Option extends Node {
+class Option extends Element
+{
     /**
      *
      * @var TextNode;
@@ -24,27 +25,30 @@ class Option extends Node {
      * @param string $text
      * @param string $value
      */
-    public function __construct($text = "", $value = NULL) {
-        parent::__construct("input",array (
+    public function __construct($text = "", $value = NULL)
+    {
+        parent::__construct("option", array(
             "value" => "$value",
-        ),true);
-        $this->textNode = new TextNode ( $text );
-        $this->appendNode ( $this->textNode );
+        ));
+        $this->textNode = new TextNode($text);
+        $this->appendNode($this->textNode);
     }
 
     /**
      * @return $this
      */
-    public function setSelected() {
-        $this->setAttr ( "selected" );
+    public function setSelected()
+    {
+        $this->setAttr("selected");
         return $this;
     }
 
     /**
      * @return $this
      */
-    public function rmSelected() {
-        $this->rmAttr ( "selected" );
+    public function rmSelected()
+    {
+        $this->rmAttr("selected");
         return $this;
     }
 
@@ -53,8 +57,9 @@ class Option extends Node {
      * @param string $text
      * @return Option
      */
-    public function setText($text) {
-        $this->textNode->setText ( $text );
+    public function setText($text)
+    {
+        $this->textNode->setText($text);
         return $this;
     }
 }
