@@ -26,7 +26,7 @@ $field = new \Aw\Ui\Adapter\Mysql\Field(array(
 $ui = new \Aw\Ui\Adapter\Mysql\FieldUI($field);
 $ui->match();
 var_dump($ui->element);
-exit;
+
 //====================================================================================
 
 $field = new \Aw\Ui\Adapter\Mysql\Field(array(
@@ -55,6 +55,9 @@ if (!$field->domainChk('ccc')) {
     print "Fail.\n";
 }
 
+$ui = new \Aw\Ui\Adapter\Mysql\FieldUI($field);
+$ui->match();
+var_dump($ui->element);
 
 if ($field->domainChk(2)) {
     print "OK.\n";

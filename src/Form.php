@@ -40,41 +40,69 @@ use Aw\Data\Tuple;
 use Aw\Ui\Adapter\Mysql\FieldUI;
 use Aw\Ui\Base\Node;
 use Aw\Ui\Base\Form as BaseForm;
+use Traversable;
 
-class Form
+class Form implements \IteratorAggregate
 {
     /**
-     *
+     * 数据源
      * @var Tuple
      */
-    public $tuple;
+    protected $tuple;
     /**
      *
      * @var BaseForm
      */
-    protected $form;
+    public $form;
     protected $children = array();
-    public $default = array();
-    public $domain = array();
-    public $uiType = array();
+
+    /**
+     * 默认值
+     * @var array
+     */
+    protected $default = array();
+    /**
+     * key 为 form_name
+     * 字段区间约束
+     * @var array
+     */
+    protected $domain = array();
+    /***
+     * key 为 form_name
+     * 字段UI类型
+     * @var array
+     */
+    protected $uiType = array();
     /**
      * component的NAME到FORM的NAME的映射
      *
      * @var array
      */
-    public $nameMap = array();
+    protected $nameMap = array();
     /**
+     * key 为 form_name
      * name => alias
      * 表单字段的先后顺序为此为准
      *
      * @var array
      */
     protected $alias = array();
-    public $dataFilter = array();
+    /***
+     * 从数据源数据到UI显示数据过滤
+     * callback 参数顺序 this,this->tuple,component->default
+     * @var array
+     */
+    protected $dataFilter = array();
+
+    /**
+     * @var FieldUI
+     */
+    private $ui;
 
     public function __construct()
     {
         $this->form = new BaseForm();
+        $this->ui = new FieldUI();
     }
 
     /**
@@ -284,17 +312,10 @@ class Form
         return $this;
     }
 
-    /**
-     * @param FieldUI $ui
-     * @return $this
-     */
-    public function initFormElement(FieldUI $ui)
+    public function init()
     {
-        if (is_array($this->uiType)) {
-            $ui->setUiTypeMap($this->uiType);
-        }
         if (is_null($this->tuple))
-            return $this;
+            return ;
         // var_dump($this->tuple);
         foreach ($this->tuple as $component) {
             $formName = array_key_exists($component->name, $this->nameMap) ? $this->nameMap [$component->name] : $component->name;
@@ -314,21 +335,26 @@ class Form
                 $component->domain = $this->domain [$formName];
             }
 
-            if ($ui->setComponent($component)->match()) {
-                $this->appendNode($formName, $ui->element);
+            if ($this->ui->setComponent($component)->match()) {
+                $this->appendNode($formName, $this->ui->element);
                 if (array_key_exists($formName, $this->alias)) {
                     $component->alias = $this->alias [$formName];
                 }
                 $this->setAlias($formName, $component->alias);
-
-                $ui->element->alias = $component->alias;
-                $ui->element->setName($formName);
+                $this->ui->element->setName($formName);
             }
-            // else{
-            // var_dump($t)
-            // ;exit;
-            // }
         }
-        return $this;
+    }
+
+    /**
+     * Retrieve an external iterator
+     * @link http://php.net/manual/en/iteratoraggregate.getiterator.php
+     * @return Traversable An instance of an object implementing <b>Iterator</b> or
+     * <b>Traversable</b>
+     * @since 5.0.0
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator ($this->children);
     }
 }

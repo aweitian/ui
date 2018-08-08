@@ -9,11 +9,21 @@
 
 namespace Aw\Ui\Adapter\Mysql;
 
+use Aw\Cmd;
 use Aw\Data\tuple;
 use Aw\Db\Connection\Mysql;
 
+/**
+ * Class Table2Tuple
+ * @package Aw\Ui\Adapter\Mysql
+ * 职责:
+ * 把 mysql表转换成tuple
+ * tuple是由多个component组成
+ *
+ */
 class Table2Tuple
 {
+    public $error;
     /**
      *
      * @var Mysql
@@ -51,6 +61,14 @@ class Table2Tuple
         $this->connection = $connection;
         $this->tuple = new tuple ();
         $this->namespaceName = $namespaceName;
+    }
+
+    /**
+     * @return tuple
+     */
+    public function getResult()
+    {
+        return $this->tuple;
     }
 
     /**
@@ -101,15 +119,20 @@ class Table2Tuple
 
     /**
      * code message data
-     * @return array
+     * @return bool
      */
-    public function initTuple()
+    public function init()
     {
-        if (!is_string($this->tbname))
-            return array('code' => 500, 'message' => "缺少表名");
+        if (!is_string($this->tbname)) {
+            $this->error = "缺少表名";
+            return false;
+        }
         return $this->initFields();
     }
 
+    /**
+     * @return bool
+     */
     private function initFields()
     {
         $res = $this->connection->fetchAll("SHOW FULL COLUMNS FROM `$this->tbname`");
@@ -146,7 +169,7 @@ class Table2Tuple
             $field = new Field($data);
             $this->tuple->append($field);
         }
-        return array('code' => 200, 'data' => array(), 'message' => 'OK');
+        return true;
     }
 
     private function _parseType($t)

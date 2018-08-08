@@ -26,6 +26,19 @@ use Aw\Data\Component;
 use Aw\Validator\DateValidator;
 use Aw\Validator\NumberValidator;
 
+/**
+ * Class Field
+ * @package Aw\Ui\Adapter\Mysql
+ * 职责:
+ * 根据MYSQL字段类型进行验证
+ * Field就是一个字段的抽象
+ * name         字段名
+ * alias        别名
+ * dataType     tinyint,smallint,int,bigint,...
+ * domain       一般在数据类型为集合时使用
+ * default      default value
+ * comment      comment
+ */
 class Field extends Component {
 
 	public function domainChk($value) {
