@@ -117,6 +117,17 @@ class Form implements \IteratorAggregate
     }
 
     /**
+     * @param $form_name
+     * @param $callback
+     * @return $this
+     */
+    public function setItemDataFilter($form_name, $callback)
+    {
+        $this->dataFilter[$form_name] = $callback;
+        return $this;
+    }
+
+    /**
      *
      * @param array $def
      * @return $this
@@ -124,6 +135,17 @@ class Form implements \IteratorAggregate
     public function setDefaultValue(array $def)
     {
         $this->default = $def;
+        return $this;
+    }
+
+    /**
+     * @param $form_name
+     * @param $value
+     * @return $this
+     */
+    public function setItemDefaultValue($form_name, $value)
+    {
+        $this->default[$form_name] = $value;
         return $this;
     }
 
@@ -139,6 +161,17 @@ class Form implements \IteratorAggregate
     }
 
     /**
+     * @param $form_name
+     * @param $domain
+     * @return $this
+     */
+    public function setItemDomain($form_name, $domain)
+    {
+        $this->domain[$form_name] = $domain;
+        return $this;
+    }
+
+    /**
      *
      * @param array $map
      * @return $this
@@ -146,6 +179,17 @@ class Form implements \IteratorAggregate
     public function setNameMap(array $map)
     {
         $this->nameMap = $map;
+        return $this;
+    }
+
+    /**
+     * @param $component_name
+     * @param $form_name
+     * @return $this
+     */
+    public function setItemNameMap($component_name, $form_name)
+    {
+        $this->nameMap[$component_name] = $form_name;
         return $this;
     }
 
@@ -233,6 +277,21 @@ class Form implements \IteratorAggregate
     }
 
     /**
+     * button checkboxGrp date datetime
+     * file image image password
+     * radioGrp reset select submit
+     * text textarea
+     * @param $form_name
+     * @param $type
+     * @return $this
+     */
+    public function setItemUiType($form_name, $type)
+    {
+        $this->uiType[$form_name] = $type;
+        return $this;
+    }
+
+    /**
      *
      * @param $formName
      * @return bool
@@ -250,7 +309,7 @@ class Form implements \IteratorAggregate
      */
     public function appendNode($formName, Node $node)
     {
-        $this->children [$formName] = $this->form->getChildCnt();
+        $this->children [$formName] = $node;
         $this->form->appendNode($node);
         return $this;
     }
@@ -272,7 +331,7 @@ class Form implements \IteratorAggregate
      */
     public function insertNode($formName, $pos, Node $node)
     {
-        $this->children [$formName] = $this->form->getChildCnt();
+        $this->children [$formName] = $node;
         $this->form->insertNode($pos, $node);
     }
 
@@ -283,39 +342,31 @@ class Form implements \IteratorAggregate
      */
     public function prependNode($formName, Node $node)
     {
-        $this->children [$formName] = $this->form->getChildCnt();
+        $this->children [$formName] = $node;
         $this->form->prependNode($node);
     }
 
-    /**
-     *
-     * @param $formName
-     * @return NULL|Node
-     */
-    public function getNode($formName)
+    public function get($form_name)
     {
-        if (!array_key_exists($formName, $this->children))
-            return null;
-        return $this->form->getChild($this->children [$formName]);
+        return isset($this->children[$form_name]) ? $this->children[$form_name] : null;
     }
 
     /**
      *
      * @param $formName
-     * @return $this
+     * @return bool
      */
     public function removeNode($formName)
     {
         if (!array_key_exists($formName, $this->children))
-            return $this;
-        $this->form->removeNode($this->children [$formName]);
-        return $this;
+            return false;
+        return $this->form->remove($this->children[$formName]) > 0;
     }
 
     public function init()
     {
         if (is_null($this->tuple))
-            return ;
+            return;
         // var_dump($this->tuple);
         foreach ($this->tuple as $component) {
             $formName = array_key_exists($component->name, $this->nameMap) ? $this->nameMap [$component->name] : $component->name;

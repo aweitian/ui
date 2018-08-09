@@ -23,14 +23,4 @@ class LeafElement extends TagNode
         $this->tagName = $tag;
         $this->attributes = $attrs;
     }
-
-    /**
-     *
-     * @param Element $parent
-     * @return $this
-     */
-    public function setParent(Element $parent)
-    {
-        return $this;
-    }
 }

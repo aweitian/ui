@@ -93,3 +93,16 @@ if ($age_input != null) {
     $age_input->setClass(array("ax", "kf", "active"));
 }
 var_dump($root->dumpHtml());
+print "\n==================================================\n";
+$v = new \Aw\Ui\Base\Input\Hidden();
+$v->setName('vvv');
+
+$span = new Element('span');
+$span->appendNode($v);
+$h1->appendNode($span);
+var_dump($root->dumpHtml());
+print "\n==================================================\n";
+$c = $root->remove($v);
+var_dump($c);
+print "\n==================================================\n";
+var_dump($root->dumpHtml());

@@ -89,6 +89,20 @@ abstract class TagNode extends Node
     }
 
     /**
+     * @param Node $node
+     * @return bool
+     */
+    public function isEqualTo(Node $node)
+    {
+        if ($node instanceof TagNode) {
+            if ($node->attributes == $this->attributes && $node->tagName == $this->tagName) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      *
      * @param string | array $cls
      * @return $this

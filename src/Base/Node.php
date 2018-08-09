@@ -29,6 +29,12 @@ abstract class Node
     abstract public function getNodeHtml();
 
     /**
+     * @param Node $node
+     * @return bool
+     */
+    abstract public function isEqualTo(Node $node);
+
+    /**
      *
      * @param Element $parent
      * @return $this
@@ -37,6 +43,14 @@ abstract class Node
     {
         $this->parent = $parent;
         return $this;
+    }
+
+    /**
+     * @return Element
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 //    /**
 //     * <div class="test"> :hd </div>

@@ -211,6 +211,32 @@ class Element extends TagNode implements \IteratorAggregate
     }
 
     /**
+     * @param Node $node
+     * @param bool $recur
+     * @param int $count
+     * @return int
+     */
+    public function remove(Node $node, $recur = true, $count = 1)
+    {
+
+        $c = 0;
+        $this->map(function ($i, $item) use ($node, $count, &$c) {
+            /**
+             * @var Node $item
+             */
+            if ($node->isEqualTo($item)) {
+                $item->getParent()->removeNode($i);
+                $count--;
+                $c++;
+            }
+            if ($count <= 0) {
+                return false;
+            }
+        }, $recur);
+        return $c;
+    }
+
+    /**
      *
      * return $this
      */
@@ -345,6 +371,7 @@ class Element extends TagNode implements \IteratorAggregate
      * 传递参数两个参数
      * index 孩子中顺序
      * item,类型为\Aw\ui\base\node
+     * 当callback === false中止foreach
      *
      * @param callback $callback
      * @param bool $recur 是否递归
@@ -355,10 +382,12 @@ class Element extends TagNode implements \IteratorAggregate
         if (is_callable($callback)) {
             $i = 0;
             foreach ($this->childNodes as $item) {
-                call_user_func_array($callback, array(
+                $ret = call_user_func_array($callback, array(
                     "index" => $i,
                     "item" => $item
                 ));
+                if ($ret === false)
+                    break;
                 if ($recur) {
                     if ($item instanceof Element) {
                         $item->map($callback);
