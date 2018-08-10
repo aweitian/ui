@@ -9,7 +9,6 @@
 
 namespace Aw\Ui\Adapter\Mysql;
 
-use Aw\Cmd;
 use Aw\Data\tuple;
 use Aw\Db\Connection\Mysql;
 

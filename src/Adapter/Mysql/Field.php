@@ -49,7 +49,7 @@ class Field extends Component {
 			case "decimal" :
 			case "mediumint" :
 			    $validator = new NumberValidator();
-				if ($this->isUnsiged) {
+				if ($this->isUnsigned) {
 				    $validator->unsignedOnly = true;
 				}
 				return $validator->validate($value);

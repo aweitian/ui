@@ -82,10 +82,14 @@ if ($ret) {
     var_dump($form->form->dumpHtml());
 
 
+    $html = '';
     foreach ($form as $form_name => $item)
     {
-        var_dump($form_name,$item);
+        $html .= "<tr><td>{$form->getAlias($form_name)}</td><td>{$item->dumpHtml()}</td></tr>\n";
     }
+    var_dump($html);
+
+    var_dump($form->get("admin_id")->dumpHtml());
 } else {
     print "fail\n";
 }

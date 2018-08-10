@@ -382,6 +382,7 @@ class Form implements \IteratorAggregate
                     ));
                 }
             }
+
             if (array_key_exists($formName, $this->domain)) {
                 $component->domain = $this->domain [$formName];
             }
