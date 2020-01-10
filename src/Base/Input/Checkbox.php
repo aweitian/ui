@@ -84,6 +84,21 @@ class Checkbox extends LeafElement
      */
     public function html()
     {
-        return $this->wrapBegin . $this->getNodeHtml() . $this->label . $this->wrapEnd;
+        return $this->getNodeHtml() . $this->label;
+    }
+
+    /**
+     * @param null $node
+     * @return string
+     */
+    public function dumpHtml($node = null)
+    {
+        if ($node == null) {
+            $node = $this;
+        }
+
+        return strtr($this->wrap, array(
+            $this->wrapPlaceHolder => $node->getNodeHtml() . $this->label
+        ));
     }
 }

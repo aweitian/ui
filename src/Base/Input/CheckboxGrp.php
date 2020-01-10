@@ -34,6 +34,7 @@ class CheckboxGrp extends Element
             if (is_array($def) && in_array($dk, $def)) {
                 $r->setChecked();
             }
+
             if (!is_null($dv)) {
                 $r->setLabel($dv);
             } else {
@@ -79,12 +80,13 @@ class CheckboxGrp extends Element
             $id = $this->getRandChar(6);
         }
         $arg = array_merge($def, $tpl);
-        $this->map(function ($index, checkbox $cb) use ($arg, $id) {
+        $that = $this;
+        $this->map(function ($index, checkbox $cb) use ($arg, $id,$that) {
             $cb->setId(strtr($arg ["id"], array(
                 ":id" => $id,
                 ":index" => $index
             )));
-            $cb->wrap($arg ["element"], ":element");
+            $cb->setWrap($arg ["element"], ":element");
             $cb->label = strtr($arg ["label"], array(
                 ":for" => $cb->getId(),
                 ":label" => $cb->label
@@ -99,9 +101,10 @@ class CheckboxGrp extends Element
      * index 孩子中顺序
      *
      * @param callback $callback
+     * @param bool $rec
      * @return $this
      */
-    public function map($callback)
+    public function map($callback, $rec = false)
     {
         if (is_callable($callback)) {
             $i = 0;
